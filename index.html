@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Maia Platform is an open-source ecosystem for AI, edge infrastructure, programming languages, data science and browser-based creative tools.">
+  <meta name="theme-color" content="#07120f">
+  <meta property="og:title" content="Maia Platform">
+  <meta property="og:description" content="Open-source infrastructure, AI, data and developer tools.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://maiaplatform.org/">
+  <meta property="og:image" content="https://maiaplatform.org/assets/images/maia-platform-hero.png">
+  <title>Maia Platform — Open Source Infrastructure, AI & Developer Tools</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --bg: #050b09;
+      --surface: #0b1612;
+      --surface-2: #10221b;
+      --border: rgba(127, 255, 190, .16);
+      --text: #eefbf5;
+      --muted: #9ab7aa;
+      --green: #49f39a;
+      --green-2: #18b56d;
+      --cyan: #62e9ff;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .34);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(73, 243, 154, .10), transparent 28rem),
+        radial-gradient(circle at 90% 20%, rgba(98, 233, 255, .08), transparent 32rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    button, input { font: inherit; }
+
+    .skip-link {
+      position: fixed; left: 1rem; top: -5rem; z-index: 1000;
+      background: var(--green); color: #03110a; padding: .8rem 1rem; border-radius: .65rem;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    .wrap { width: min(calc(100% - 2rem), var(--max)); margin-inline: auto; }
+
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(5, 11, 9, .78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { display: flex; align-items: center; gap: .8rem; text-decoration: none; font-weight: 800; letter-spacing: -.02em; }
+    .mark {
+      width: 42px; aspect-ratio: 1; display: grid; place-items: center;
+      border: 1px solid rgba(73, 243, 154, .34); border-radius: 12px;
+      background: linear-gradient(145deg, rgba(73, 243, 154, .18), rgba(73, 243, 154, .03));
+      color: var(--green); box-shadow: inset 0 0 24px rgba(73, 243, 154, .08);
+      font-size: 1.2rem;
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.1rem; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: .95rem; }
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+      min-height: 46px; padding: .75rem 1rem; border-radius: .8rem;
+      border: 1px solid var(--border); text-decoration: none; font-weight: 750;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); border-color: rgba(73, 243, 154, .48); }
+    .btn-primary { color: #03110a; background: linear-gradient(135deg, var(--green), #a2ffcb); border-color: transparent; }
+    .btn-secondary { background: rgba(255,255,255,.03); }
+
+    .hero { padding: clamp(4rem, 9vw, 8rem) 0 3.5rem; }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); }
+    .eyebrow { color: var(--green); text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 850; }
+    h1 { margin: .7rem 0 1rem; font-size: clamp(3rem, 8vw, 6.8rem); line-height: .94; letter-spacing: -.065em; }
+    .gradient-text { background: linear-gradient(90deg, var(--green), var(--cyan)); color: transparent; -webkit-background-clip: text; background-clip: text; }
+    .lead { color: var(--muted); font-size: clamp(1.06rem, 2vw, 1.25rem); max-width: 62ch; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.6rem; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; margin-top: 2rem; color: var(--muted); font-size: .9rem; }
+    .hero-meta span::before { content: "●"; color: var(--green); margin-right: .45rem; }
+
+    .hero-art {
+      position: relative; border-radius: 1.4rem; overflow: hidden;
+      border: 1px solid rgba(73, 243, 154, .24); box-shadow: var(--shadow);
+      background: #08130f;
+    }
+    .hero-art::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(180deg, transparent 60%, rgba(5,11,9,.8));
+    }
+    .hero-art img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; }
+
+    section { padding: 4.8rem 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 1.7rem; }
+    .section-head h2 { margin: .3rem 0 0; font-size: clamp(2rem, 4vw, 3.25rem); letter-spacing: -.045em; line-height: 1.05; }
+    .section-head p { margin: 0; max-width: 48ch; color: var(--muted); }
+
+    .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .pillar, .project, .about-card {
+      border: 1px solid var(--border); border-radius: 1.1rem;
+      background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      box-shadow: inset 0 1px rgba(255,255,255,.03);
+    }
+    .pillar { padding: 1.35rem; }
+    .pillar strong { display: block; font-size: 1.05rem; margin: .55rem 0 .35rem; }
+    .pillar p { margin: 0; color: var(--muted); font-size: .94rem; }
+    .icon { color: var(--green); font-size: 1.35rem; }
+
+    .toolbar { display: grid; grid-template-columns: 1fr auto; gap: 1rem; margin-bottom: 1.2rem; }
+    .search {
+      min-height: 50px; width: 100%; padding: 0 1rem; color: var(--text);
+      border: 1px solid var(--border); border-radius: .85rem; outline: none;
+      background: rgba(255,255,255,.035);
+    }
+    .search:focus { border-color: var(--green-2); box-shadow: 0 0 0 4px rgba(73,243,154,.08); }
+    .filters { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .filter {
+      border: 1px solid var(--border); border-radius: 999px; color: var(--muted);
+      background: rgba(255,255,255,.025); padding: .65rem .85rem; cursor: pointer;
+    }
+    .filter.active, .filter:hover { color: #03110a; background: var(--green); border-color: transparent; }
+
+    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .project { position: relative; padding: 1.35rem; min-height: 240px; display: flex; flex-direction: column; overflow: hidden; }
+    .project::after {
+      content: ""; position: absolute; width: 150px; height: 150px; right: -80px; top: -90px;
+      border-radius: 50%; background: rgba(73,243,154,.08); filter: blur(2px);
+    }
+    .project.featured { border-color: rgba(73,243,154,.34); background: linear-gradient(145deg, rgba(73,243,154,.09), rgba(255,255,255,.015)); }
+    .project-top { display: flex; justify-content: space-between; align-items: start; gap: .7rem; }
+    .project h3 { margin: .6rem 0 .35rem; font-size: 1.25rem; letter-spacing: -.02em; }
+    .project p { color: var(--muted); margin: 0 0 1rem; font-size: .94rem; }
+    .tag { color: var(--green); font-size: .72rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+    .repo-link { margin-top: auto; text-decoration: none; font-weight: 800; color: var(--text); }
+    .repo-link:hover { color: var(--green); }
+    .hidden { display: none !important; }
+    .empty { display: none; color: var(--muted); padding: 2rem 0; }
+
+    .about-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1rem; }
+    .about-card { padding: clamp(1.5rem, 4vw, 2.4rem); }
+    .about-card h2, .about-card h3 { margin-top: 0; }
+    .about-card p { color: var(--muted); }
+    .terminal {
+      margin-top: 1rem; padding: 1rem; border-radius: .85rem; overflow-x: auto;
+      background: #020706; border: 1px solid rgba(73,243,154,.15); color: #adffcf;
+      font: .88rem/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .cta {
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      padding: clamp(1.5rem, 4vw, 2.8rem); border-radius: 1.3rem;
+      border: 1px solid rgba(73,243,154,.26);
+      background: linear-gradient(120deg, rgba(73,243,154,.12), rgba(98,233,255,.06));
+    }
+    .cta h2 { margin: 0; font-size: clamp(1.7rem, 4vw, 2.8rem); letter-spacing: -.04em; }
+    .cta p { color: var(--muted); margin: .45rem 0 0; }
+
+    footer { padding: 2.5rem 0 3rem; border-top: 1px solid var(--border); color: var(--muted); }
+    .footer-grid { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .footer-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .footer-links a { text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 960px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .hero-art { order: -1; }
+      .pillars { grid-template-columns: repeat(2, 1fr); }
+      .projects { grid-template-columns: repeat(2, 1fr); }
+      .toolbar { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links a:not(.btn) { display: none; }
+      .pillars, .projects { grid-template-columns: 1fr; }
+      .section-head, .cta { align-items: start; flex-direction: column; }
+      .hero { padding-top: 2.4rem; }
+      h1 { font-size: clamp(2.8rem, 18vw, 4.5rem); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header>
+    <nav class="wrap" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Maia Platform home">
+        <span class="mark" aria-hidden="true">M</span>
+        <span>Maia Platform</span>
+      </a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a class="btn btn-secondary" href="https://github.com/souzamonteiro" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Open source ecosystem</div>
+          <h1>Build locally.<br><span class="gradient-text">Reach globally.</span></h1>
+          <p class="lead">Maia Platform brings together infrastructure, artificial intelligence, data science, programming languages and browser-based creative tools — built in the open.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">Explore projects</a>
+            <a class="btn btn-secondary" href="https://github.com/souzamonteiro" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          </div>
+          <div class="hero-meta" aria-label="Platform highlights">
+            <span>Open source</span><span>Privacy-first</span><span>Edge-ready</span><span>Developer focused</span>
+          </div>
+        </div>
+        <figure class="hero-art">
+          <img src="assets/images/maia-platform-hero.png" alt="Maia Edge lynx mascot guarding a secure hybrid infrastructure" width="1536" height="1024">
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="pillars-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">One platform, many directions</div><h2 id="pillars-title">Technology with a coherent purpose.</h2></div>
+          <p>The projects share a practical philosophy: control your infrastructure, understand your tools and make complex technology accessible.</p>
+        </div>
+        <div class="pillars">
+          <article class="pillar"><span class="icon">⬡</span><strong>Infrastructure</strong><p>Hybrid cloud, edge deployment, remote development and secure self-hosting.</p></article>
+          <article class="pillar"><span class="icon">✦</span><strong>AI & Data</strong><p>Neural networks, statistics, time-series forecasting and applied analytics.</p></article>
+          <article class="pillar"><span class="icon">⌘</span><strong>Languages & Tools</strong><p>Compilers, editors, SQL engines, WebAssembly and developer environments.</p></article>
+          <article class="pillar"><span class="icon">◉</span><strong>Creative Web Apps</strong><p>Audio, video, learning, accessibility, health and productivity applications.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">Project directory</div><h2 id="projects-title">Explore the ecosystem.</h2></div>
+          <p>Featured foundations appear first. Use the filters or search to discover the broader collection.</p>
+        </div>
+
+        <div class="toolbar">
+          <label><span style="position:absolute;left:-9999px">Search projects</span><input id="search" class="search" type="search" placeholder="Search by project name or purpose…" autocomplete="off"></label>
+          <div class="filters" role="group" aria-label="Filter projects">
+            <button class="filter active" data-filter="all">All</button>
+            <button class="filter" data-filter="core">Core</button>
+            <button class="filter" data-filter="ai-data">AI & Data</button>
+            <button class="filter" data-filter="devtools">Dev Tools</button>
+            <button class="filter" data-filter="media">Media</button>
+            <button class="filter" data-filter="apps">Apps</button>
+          </div>
+        </div>
+
+        <div class="projects" id="projectGrid">
+          <article class="project featured" data-category="core" data-search="maia edge hybrid cloud infrastructure vpn nginx wireguard self hosting">
+            <div class="project-top"><span class="tag">Core · Infrastructure</span><span>🐈</span></div><h3>Maia Edge</h3><p>Hybrid cloud infrastructure for securely publishing services hosted on local hardware through a lightweight cloud gateway.</p><a class="repo-link" href="https://github.com/souzamonteiro/maia-edge" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+          </article>
+          <article class="project featured" data-category="core devtools" data-search="maiascript programming language compiler cli vscode book">
+            <div class="project-top"><span class="tag">Core · Language</span><span>⌘</span></div><h3>MaiaScript</h3><p>A programming-language ecosystem with compiler, CLI, editor support and learning resources.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiascript" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+          </article>
+          <article class="project featured" data-category="core devtools" data-search="maiasql sql sqlite websql parser database">
+            <div class="project-top"><span class="tag">Core · Data</span><span>🐿️</span></div><h3>MaiaSQL</h3><p>SQL and database tooling focused on portable, browser-friendly and embedded data workflows.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiasql" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+          </article>
+          <article class="project featured" data-category="core devtools" data-search="maiacc compiler c cpp trex ebnf parser">
+            <div class="project-top"><span class="tag">Core · Compiler</span><span>🦖</span></div><h3>MaiaCC</h3><p>Compiler and parser infrastructure for building language tooling and code-processing experiments.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiacc" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+          </article>
+          <article class="project featured" data-category="core ai-data" data-search="maianne neural network machine learning time series forecast ai">
+            <div class="project-top"><span class="tag">Core · AI</span><span>✦</span></div><h3>MaiaNNE</h3><p>Neural-network tooling used in applied machine learning and time-series forecasting projects.</p><a class="repo-link" href="https://github.com/souzamonteiro/maianne" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+          </article>
+          <article class="project featured" data-category="core ai-data" data-search="maiastatistics statistics analysis scientific computing">
+            <div class="project-top"><span class="tag">Core · Science</span><span>🦉</span></div><h3>MaiaStatistics</h3><p>Statistical analysis and scientific-computing components for the Maia data ecosystem.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiastatistics" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+          </article>
+          <article class="project featured" data-category="core apps" data-search="loomplanner loom project planning pwa productivity">
+            <div class="project-top"><span class="tag">Core · Productivity</span><span>🕸️</span></div><h3>Loom Planner</h3><p>A project-planning PWA designed to organize initiatives, tasks, costs and execution.</p><a class="repo-link" href="https://github.com/souzamonteiro/loomplanner" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+          </article>
+          <article class="project featured" data-category="ai-data apps" data-search="battery health analyzer telemetry android dataset bdf">
+            <div class="project-top"><span class="tag">Applied Research</span><span>🔋</span></div><h3>Battery Health Analyzer</h3><p>Battery telemetry analysis with health metrics, datasets, visualizations and reproducible data formats.</p><a class="repo-link" href="https://github.com/souzamonteiro/battery-health-analyzer" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+          </article>
+
+          <article class="project" data-category="ai-data" data-search="maiacryptocurrency crypto forecast time series binance maianne statistics"><div class="project-top"><span class="tag">AI & Data</span><span>◈</span></div><h3>Maia Cryptocurrency</h3><p>Cryptocurrency analysis and forecasting using MaiaNNE and MaiaStatistics.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiacryptocurrency" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="ai-data" data-search="binance api server cryptocurrency node"><div class="project-top"><span class="tag">API</span><span>⇄</span></div><h3>Binance API Server</h3><p>A server-side integration layer for cryptocurrency market data and operations.</p><a class="repo-link" href="https://github.com/souzamonteiro/binance-api-server" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="ai-data" data-search="open mobile battery telemetry dataset android research"><div class="project-top"><span class="tag">Dataset</span><span>▦</span></div><h3>Open Mobile Battery Telemetry Dataset</h3><p>An open dataset supporting battery-health and mobile telemetry research.</p><a class="repo-link" href="https://github.com/souzamonteiro/Open-Mobile-Battery-Telemetry-Dataset" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="ai-data devtools" data-search="mkaffnet neural network ai"><div class="project-top"><span class="tag">AI & Data</span><span>✧</span></div><h3>MKAffNet</h3><p>Experimental artificial-intelligence and neural-network research tooling.</p><a class="repo-link" href="https://github.com/souzamonteiro/mkaffnet" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="ai-data apps" data-search="maiafootball football analytics prediction"><div class="project-top"><span class="tag">Applied AI</span><span>⚽</span></div><h3>Maia Football</h3><p>Football-oriented analytics and applied prediction experiments.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiafootball" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+
+          <article class="project" data-category="devtools core" data-search="maiac c language compiler"><div class="project-top"><span class="tag">Dev Tools</span><span>C</span></div><h3>MaiaC</h3><p>C-oriented language and compiler experimentation in the Maia toolchain.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiac" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools core" data-search="maiacpp cpp c++ web framework"><div class="project-top"><span class="tag">Dev Tools</span><span>C++</span></div><h3>MaiaCpp</h3><p>C++ components and tooling for the Maia development ecosystem.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiacpp" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools" data-search="maiawasm webassembly wasm browser"><div class="project-top"><span class="tag">WebAssembly</span><span>W</span></div><h3>MaiaWASM</h3><p>WebAssembly experiments and browser runtime integration for Maia projects.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiawasm" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools" data-search="websql sqlite3 sql browser database"><div class="project-top"><span class="tag">Database</span><span>SQL</span></div><h3>WebSQL SQLite3</h3><p>SQLite-backed WebSQL compatibility and browser database experiments.</p><a class="repo-link" href="https://github.com/souzamonteiro/websql-sqlite3" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools" data-search="mksql sql parser generator"><div class="project-top"><span class="tag">Database</span><span>DB</span></div><h3>MKSQL</h3><p>SQL-focused tooling for parsing, generation and database workflows.</p><a class="repo-link" href="https://github.com/souzamonteiro/mksql" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools" data-search="maiaregex regular expressions parser"><div class="project-top"><span class="tag">Dev Tools</span><span>.*</span></div><h3>MaiaRegex</h3><p>Regular-expression tooling and experiments for language-processing projects.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiaregex" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools" data-search="maiaeditor code editor ide"><div class="project-top"><span class="tag">Developer Experience</span><span>⌨</span></div><h3>Maia Editor</h3><p>An editor experience designed around Maia languages and tooling.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiaeditor" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools" data-search="maiaconsole terminal console"><div class="project-top"><span class="tag">Developer Experience</span><span>&gt;_</span></div><h3>Maia Console</h3><p>Console and terminal utilities for interacting with Maia development tools.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiaconsole" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools" data-search="maiascript compiler cli vscode extension book"><div class="project-top"><span class="tag">Language Tooling</span><span>MS</span></div><h3>MaiaScript Toolchain</h3><p>Compiler, CLI, VS Code extensions and book supporting the MaiaScript language.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiascript-compiler" target="_blank" rel="noopener noreferrer">Compiler ↗</a></article>
+          <article class="project" data-category="devtools" data-search="guash shell terminal command language"><div class="project-top"><span class="tag">Dev Tools</span><span>$</span></div><h3>Guash</h3><p>Shell and command-line experimentation for developer workflows.</p><a class="repo-link" href="https://github.com/souzamonteiro/guash" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools apps" data-search="linux on android terminal mobile"><div class="project-top"><span class="tag">Systems</span><span>⌁</span></div><h3>Linux on Android</h3><p>Tools and experiments for bringing Linux development environments to Android.</p><a class="repo-link" href="https://github.com/souzamonteiro/linuxonandroid" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools" data-search="cna tool code analysis"><div class="project-top"><span class="tag">Dev Tools</span><span>◇</span></div><h3>CNA Tool</h3><p>Technical utilities for code and systems analysis workflows.</p><a class="repo-link" href="https://github.com/souzamonteiro/cnatool" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools apps" data-search="learning blockly education programming blocks"><div class="project-top"><span class="tag">Education</span><span>▦</span></div><h3>Learning Blockly</h3><p>Visual programming and educational experiments built around Blockly.</p><a class="repo-link" href="https://github.com/souzamonteiro/learningblockly" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools apps" data-search="generate slides presentation markdown"><div class="project-top"><span class="tag">Productivity</span><span>▤</span></div><h3>Generate Slides</h3><p>Utilities for automating and accelerating slide-deck creation.</p><a class="repo-link" href="https://github.com/souzamonteiro/generateslides" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="devtools apps" data-search="translation automation translator language"><div class="project-top"><span class="tag">Language Tools</span><span>文</span></div><h3>Translation Tools</h3><p>Maia Translator and automation utilities for multilingual software workflows.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiatranslator" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+
+          <article class="project" data-category="media" data-search="ffmpeg wasm browser audio video conversion"><div class="project-top"><span class="tag">Media</span><span>▶</span></div><h3>FFmpeg WASM Browser</h3><p>Browser-based media processing powered by a local WebAssembly build of FFmpeg.</p><a class="repo-link" href="https://github.com/souzamonteiro/ffmpeg-wasm-browser" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="media" data-search="audio converter web app"><div class="project-top"><span class="tag">Audio</span><span>♫</span></div><h3>Audio Converter Web App</h3><p>A browser application for convenient audio conversion workflows.</p><a class="repo-link" href="https://github.com/souzamonteiro/audioconverterwebapp" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="media" data-search="camera recorder web app video"><div class="project-top"><span class="tag">Video</span><span>●</span></div><h3>Camera Recorder Web App</h3><p>Browser camera capture and recording with a simple web interface.</p><a class="repo-link" href="https://github.com/souzamonteiro/camerarecorderwebapp" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="media" data-search="screen recorder web app"><div class="project-top"><span class="tag">Video</span><span>▣</span></div><h3>Screen Recorder Web App</h3><p>A web application for screen capture and recording directly in the browser.</p><a class="repo-link" href="https://github.com/souzamonteiro/screenrecorderwebapp" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="media" data-search="video editor timeline title converter mixer extractor"><div class="project-top"><span class="tag">Video Toolkit</span><span>✂</span></div><h3>Browser Video Toolkit</h3><p>Editors, converters, mixers, extractors, title makers and timeline tools for browser media production.</p><a class="repo-link" href="https://github.com/souzamonteiro/videoeditorwebapp" target="_blank" rel="noopener noreferrer">Editor ↗</a></article>
+          <article class="project" data-category="media ai-data" data-search="rnnoise noise suppression gui javascript audio"><div class="project-top"><span class="tag">Audio & AI</span><span>〰</span></div><h3>RNNoise Tools</h3><p>Native and JavaScript interfaces for real-time neural audio-noise suppression.</p><a class="repo-link" href="https://github.com/souzamonteiro/rnnoise-gui" target="_blank" rel="noopener noreferrer">GUI ↗</a></article>
+          <article class="project" data-category="media ai-data" data-search="subtitles generator speech transcription video"><div class="project-top"><span class="tag">Media & AI</span><span>CC</span></div><h3>Subtitles Generator</h3><p>A browser-oriented workflow for creating subtitles for audiovisual content.</p><a class="repo-link" href="https://github.com/souzamonteiro/subtitlesgeneratorwebapp" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="media" data-search="maia recorder voice meeting camera"><div class="project-top"><span class="tag">Media</span><span>◉</span></div><h3>Maia Recorder</h3><p>Recording tools and experiments for media capture inside the Maia ecosystem.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiarecorder" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="media ai-data" data-search="maia voice speech audio artificial intelligence"><div class="project-top"><span class="tag">Voice</span><span>◖</span></div><h3>Maia Voice</h3><p>Voice-oriented interfaces and experiments connecting audio with intelligent applications.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiavoice" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="media apps" data-search="midi keyboard web app music"><div class="project-top"><span class="tag">Music</span><span>♬</span></div><h3>MIDI Keyboard Web App</h3><p>A browser-based MIDI keyboard and music-interaction experiment.</p><a class="repo-link" href="https://github.com/souzamonteiro/midikeyboardwebapp" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="media apps" data-search="teleprompter web app video presentation"><div class="project-top"><span class="tag">Creator Tool</span><span>▧</span></div><h3>Teleprompter Web App</h3><p>A lightweight browser teleprompter for recording, teaching and presentations.</p><a class="repo-link" href="https://github.com/souzamonteiro/teleprompterwebapp" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+
+          <article class="project" data-category="apps" data-search="adipometer health body fitness app"><div class="project-top"><span class="tag">Health</span><span>◎</span></div><h3>Adipometer</h3><p>A mobile-oriented application supporting body-measurement and fitness assessment workflows.</p><a class="repo-link" href="https://github.com/souzamonteiro/adipometer" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="apps" data-search="fit log workout log fitness training"><div class="project-top"><span class="tag">Health</span><span>＋</span></div><h3>Fitness Log Apps</h3><p>FitLog and WorkoutLog applications for tracking exercise and physical-training routines.</p><a class="repo-link" href="https://github.com/souzamonteiro/fitlogwebapp" target="_blank" rel="noopener noreferrer">FitLog ↗</a></article>
+          <article class="project" data-category="apps" data-search="carddos card dos game"><div class="project-top"><span class="tag">Application</span><span>▱</span></div><h3>CardDOS</h3><p>An application experiment combining card-based interaction and software tooling.</p><a class="repo-link" href="https://github.com/souzamonteiro/carddos" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="apps" data-search="morse code web app accessibility communication"><div class="project-top"><span class="tag">Communication</span><span>·−</span></div><h3>Morse Code Web App</h3><p>A browser application for learning and working with Morse-code communication.</p><a class="repo-link" href="https://github.com/souzamonteiro/morsecodewebapp" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="apps ai-data" data-search="text corrector grammar artificial intelligence"><div class="project-top"><span class="tag">Writing</span><span>Aa</span></div><h3>Text Corrector</h3><p>A writing assistant for reviewing and improving textual content.</p><a class="repo-link" href="https://github.com/souzamonteiro/textcorrector" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="apps devtools" data-search="xml to sql data conversion"><div class="project-top"><span class="tag">Data Utility</span><span>&lt;/&gt;</span></div><h3>XML to SQL</h3><p>A utility for transforming XML-oriented data into SQL workflows.</p><a class="repo-link" href="https://github.com/souzamonteiro/xmltosql" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="apps devtools" data-search="novnc browser remote desktop vnc"><div class="project-top"><span class="tag">Remote Access</span><span>▰</span></div><h3>noVNC</h3><p>A maintained project fork used for browser-based remote desktop access.</p><a class="repo-link" href="https://github.com/souzamonteiro/noVNC" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="apps" data-search="maia meet meetings communication video conference"><div class="project-top"><span class="tag">Collaboration</span><span>◫</span></div><h3>Maia Meet</h3><p>Meeting and communication experiments for browser-based collaboration.</p><a class="repo-link" href="https://github.com/souzamonteiro/maia-meet" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="apps devtools" data-search="maia studio development environment application"><div class="project-top"><span class="tag">Platform</span><span>◆</span></div><h3>Maia Studio</h3><p>A studio environment connecting Maia tools, development workflows and applications.</p><a class="repo-link" href="https://github.com/souzamonteiro/maiastudio" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="apps devtools" data-search="maia site website platform"><div class="project-top"><span class="tag">Platform</span><span>◇</span></div><h3>Maia Site</h3><p>Website and presentation components from the wider Maia project history.</p><a class="repo-link" href="https://github.com/souzamonteiro/maia-site" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+          <article class="project" data-category="apps ai-data" data-search="maia alexa voice assistant"><div class="project-top"><span class="tag">Voice Assistant</span><span>◌</span></div><h3>Maia Alexa</h3><p>Voice-assistant integration experiments within the Maia ecosystem.</p><a class="repo-link" href="https://github.com/souzamonteiro/maialexa" target="_blank" rel="noopener noreferrer">Repository ↗</a></article>
+        </div>
+        <p class="empty" id="emptyState">No projects match this search.</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about-grid">
+        <article class="about-card">
+          <div class="eyebrow">About Maia Platform</div>
+          <h2>Independent software, built to be understood.</h2>
+          <p>Maia Platform is an open-source ecosystem created by Roberto Monteiro. It connects long-running work in software engineering, computational modeling, artificial intelligence, education and applied research.</p>
+          <p>The platform favors practical tools, local ownership of data and infrastructure, browser-first applications and reusable foundations for future products.</p>
+        </article>
+        <article class="about-card">
+          <div class="eyebrow">Deploy with Maia Edge</div>
+          <h3>Cloud entry. Local power.</h3>
+          <p>Use a lightweight VPS as a secure public gateway while applications, databases and AI workloads run on your own hardware.</p>
+          <div class="terminal"><span>$</span> git clone https://github.com/souzamonteiro/maia-edge<br><span>$</span> cd maia-edge<br><span>$</span> make validate</div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta">
+          <div><h2>Follow the platform as it evolves.</h2><p>Source code, experiments and documentation are published openly on GitHub.</p></div>
+          <a class="btn btn-primary" href="https://github.com/souzamonteiro" target="_blank" rel="noopener noreferrer">Visit GitHub profile ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>© <span id="year"></span> Maia Platform. Open source, one project at a time.</div>
+      <div class="footer-links"><a href="https://github.com/souzamonteiro" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://maiascript.com" target="_blank" rel="noopener noreferrer">MaiaScript</a><a href="#top">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const searchInput = document.querySelector('#search');
+    const filters = [...document.querySelectorAll('.filter')];
+    const cards = [...document.querySelectorAll('.project')];
+    const emptyState = document.querySelector('#emptyState');
+    let activeFilter = 'all';
+
+    function updateProjects() {
+      const query = searchInput.value.trim().toLowerCase();
+      let visible = 0;
+      cards.forEach((card) => {
+        const categories = card.dataset.category.split(' ');
+        const matchesFilter = activeFilter === 'all' || categories.includes(activeFilter);
+        const matchesSearch = !query || `${card.textContent} ${card.dataset.search}`.toLowerCase().includes(query);
+        const show = matchesFilter && matchesSearch;
+        card.classList.toggle('hidden', !show);
+        if (show) visible += 1;
+      });
+      emptyState.style.display = visible ? 'none' : 'block';
+    }
+
+    filters.forEach((button) => button.addEventListener('click', () => {
+      filters.forEach((item) => item.classList.remove('active'));
+      button.classList.add('active');
+      activeFilter = button.dataset.filter;
+      updateProjects();
+    }));
+
+    searchInput.addEventListener('input', updateProjects);
+    document.querySelector('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
