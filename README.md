@@ -2,6 +2,12 @@
 
 Static landing page for [maiaplatform.org](https://maiaplatform.org), built with pure HTML, CSS and JavaScript.
 
+## Install dependencies
+```bash
+sudo apt update
+sudo apt install nginx certbot python3-certbot-nginx rsync -y
+```
+
 ## Local preview
 
 ```bash
