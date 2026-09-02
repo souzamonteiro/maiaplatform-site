@@ -71,6 +71,7 @@
     .nav-links { display: flex; align-items: center; gap: 1.1rem; }
     .nav-links a { text-decoration: none; color: var(--muted); font-size: .95rem; }
     .nav-links a:hover { color: var(--text); }
+    .nav-links .btn { min-height: 42px; padding: .55rem .85rem; }
 
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
@@ -184,6 +185,7 @@
 
     @media (max-width: 640px) {
       .nav-links a:not(.btn) { display: none; }
+      .nav-github { display: none; }
       .pillars, .projects { grid-template-columns: 1fr; }
       .section-head, .cta { align-items: start; flex-direction: column; }
       .hero { padding-top: 2.4rem; }
@@ -209,7 +211,8 @@
         <a href="#projects">Projects</a>
         <a href="#about">About</a>
         <a href="#founder">Founder</a>
-        <a class="btn btn-secondary" href="https://github.com/souzamonteiro" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a class="btn btn-primary nav-apps" href="https://apps.maiaplatform.org/">Online Apps ↗</a>
+        <a class="btn btn-secondary nav-github" href="https://github.com/souzamonteiro" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       </div>
     </nav>
   </header>
