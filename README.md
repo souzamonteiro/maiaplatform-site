@@ -44,3 +44,19 @@ sudo certbot renew --dry-run
 - `assets/images/maia-platform-hero.png`: hero artwork.
 - `assets/images/favicon.svg`: browser icon.
 - `nginx/maiaplatform.org.conf`: initial HTTP NGINX virtual host. Certbot adds HTTPS.
+
+## Update the catalog on an existing installation
+
+The Maia Meet card appears in Apps and Media and opens
+`https://meet.maiaplatform.org/`, with a separate repository link.
+To publish a changed `index.html` on the host serving Maia Platform, copy the
+updated checkout/file there and run from that checkout:
+
+```bash
+sudo cp -a /var/www/maiaplatform.org/index.html /var/www/maiaplatform.org/index.html.bak
+sudo install -m 0644 index.html /var/www/maiaplatform.org/index.html
+```
+
+This updates the page without replacing Nginx/TLS configuration or other assets.
+No Nginx reload is needed for a static HTML update. Adjust the destination if the
+site uses a different document root.
